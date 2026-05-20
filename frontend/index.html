@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 考研数学助教</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <h2>📐 考研数学</h2>
+      <button id="newChatBtn" class="btn-new" title="新建对话">＋ 新对话</button>
+    </div>
+    <div class="sidebar-tabs">
+      <button class="tab active" data-filter="all">全部</button>
+      <button class="tab" data-filter="bookmarked">⭐ 收藏</button>
+    </div>
+    <div id="conversationList" class="conversation-list"></div>
+  </aside>
+
+  <!-- Main area -->
+  <main id="main">
+    <div id="chatHeader" class="chat-header">
+      <span id="chatTitle">AI 考研数学助教</span>
+      <div class="header-actions">
+        <button id="bookmarkBtn" class="btn-icon" title="收藏此对话">☆</button>
+        <button id="deleteChatBtn" class="btn-icon danger" title="删除对话">🗑</button>
+      </div>
+    </div>
+
+    <div id="messageContainer" class="message-container">
+      <div class="welcome">
+        <div class="welcome-icon">📐</div>
+        <h1>AI 考研数学助教</h1>
+        <p>上传题目截图或输入数学问题，获得详细解答</p>
+        <div class="welcome-modes">
+          <div class="mode-card">
+            <strong>✏️ 解题</strong>
+            <span>输入题目，获得完整解题步骤</span>
+          </div>
+          <div class="mode-card">
+            <strong>✅ 批改</strong>
+            <span>上传你的解题过程，AI 帮你检查</span>
+          </div>
+          <div class="mode-card">
+            <strong>📝 类似题</strong>
+            <span>基于当前题目生成同类变式</span>
+          </div>
+          <div class="mode-card">
+            <strong>📖 概念</strong>
+            <span>解释数学概念、定理和公式</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="inputArea" class="input-area">
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="solve">✏️ 解题</button>
+        <button class="mode-btn" data-mode="check">✅ 批改</button>
+        <button class="mode-btn" data-mode="similar">📝 类似题</button>
+        <button class="mode-btn" data-mode="concept">📖 概念</button>
+        <label class="reasoning-toggle" title="使用深度推理模型（更仔细但稍慢）">
+          <input type="checkbox" id="reasoningCheck">
+          <span>深度思考</span>
+        </label>
+      </div>
+      <div class="input-row">
+        <label for="imageUpload" class="btn-upload" title="上传图片">🖼</label>
+        <input type="file" id="imageUpload" accept="image/*" hidden>
+        <div id="imagePreview" class="image-preview hidden">
+          <img id="previewImg" alt="preview">
+          <button id="removeImage" class="btn-remove-image">✕</button>
+        </div>
+        <textarea id="messageInput" rows="2" placeholder="输入考研数学题目…支持 LaTeX 公式（如 \\int_0^1 x^2 dx）"></textarea>
+        <button id="sendBtn" class="btn-send">发送</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- KaTeX for math rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<!-- marked for Markdown rendering -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
